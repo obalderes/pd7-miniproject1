@@ -1,0 +1,13 @@
+from pymongo import Connection
+
+Connection=Connection('mongo.stuycs.org')
+
+# to auth                                                                       
+db = Connection.admin
+res=db.authenticate('ml7','ml7')
+
+# connect to your own database                                                db = Connection['z-pd7'] # or z-pd7                                             
+
+#Collection bzstories = 
+collection = db.bzstories                     
+

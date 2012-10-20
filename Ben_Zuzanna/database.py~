@@ -1,0 +1,22 @@
+from pymongo import Connection
+
+Connection=Connection('mongo.stuycs.org')
+
+# to auth                                                                     
+db = Connection.admin
+res=db.authenticate('ml7','ml7')
+
+# connect to your own database                                                 
+db = Connection['z-pd7']                                             
+
+#Collection bzstories holds the storie name and a list of lines
+collection = db.bzstories # or db['first_collection']                   
+
+
+#test add story
+collection.insert({'name': 'Arrg', 'lines': ['this is line one', 'this is a boiring story']})
+collection.insert({'name': 'Odessy', 'lines' :['by Homer', 'this is an interesting story', 'about odysseus']})
+
+res= collection.find()
+for line in res:
+    print line
