@@ -8,19 +8,17 @@ db = Connection['z-pd7-EliHayden']
 collection = db.collection1
 
 
+def addStory(title,story):
+    d = {'title':title,'story':story}
+    collection.insert(d)
 
+def getTitles(cursor):
+    titles = []
+    res = cursor.find()
+    for i in res:
+        titles.append(str(i['title']))
 
-#Routine to add a story
-##may be completely incorrect
-story1 = []
-d = {'storyname': 'Story Numero 1','story': story1}
-collection.insert(d)
+    return titles
 
-##Add a line to an already created story
-line2add = 'blah blah blah'
-searchfor = 'Story Numero 1'
-res = collection.find()
-for line in res:
-    if line['storyname']== searchfor
-        storytmp = 'story' + line2add 
-        'story' = storytmp
+x = getTitles(collection)
+print x
