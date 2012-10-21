@@ -19,7 +19,10 @@ def addStory(x):
 
 def addLine(title, newLine):
     tmp = kurkalva.find_one({'title': title})
+    tmp.lines.append(str(newLine))
 
 addStory("This is a new story")
-print db.collection_names()
-print kurkalva.find_one()
+#print db.collection_names()
+#print kurkalva.find_one()
+addLine("This is a new story", "and it sounds a little something like this")
+kurkalva.find_one({'title': "This is a new story"})
