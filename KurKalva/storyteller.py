@@ -4,17 +4,20 @@
 
 from pymongo import Connection
 
-Connection = None
-db = None
-res = None
-kurkalva = None
 
-def setup():
-    Connection=Connection('mongo.stuycs.org')
-    db = Connection.admin
-    res = db.authenticate('ml7', 'ml7')
-    db = Connection['z-pd7-KurKalva']
-    kurkalva = db.kurkalva
+##We thought we needed to create a setup function for unit testing to work,
+##here, but it was not necessary, so there was no need to set the global
+##variables to null here.
+#Connection = None
+#db = None
+#res = None
+#kurkalva = None
+#def setup():
+Connection=Connection('mongo.stuycs.org')
+db = Connection.admin
+res = db.authenticate('ml7', 'ml7')
+db = Connection['z-pd7-KurKalva']
+kurkalva = db.kurkalva
 
 def addStory(x):
     if (kurkalva.find_one({'title': x}) != []):

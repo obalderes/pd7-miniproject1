@@ -4,12 +4,12 @@ import storyteller
 class TestSequenceFunctions(unittest.TestCase):
 
    def setUp(self):
-      storyteller.setup()
+      pass
+      #storyteller.setup()
 
    def test_addStory(self):
-      self.newtitle = "This is the never ending story"
-      storyteller.addStory(self.newtitle)
-      self.assertEqual(storyteller.returnStory(self.newTitle)['title'], self.newtitle)
+      storyteller.addStory("test")
+      self.assertEqual(storyteller.returnStory("test")['title'],"test")
 
 
 if __name__ == '__main__':
