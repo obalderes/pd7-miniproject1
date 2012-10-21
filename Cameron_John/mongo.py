@@ -13,5 +13,12 @@ def addStory(title):
         collection = db.stories     
         collection.insert(d)
 
-def 
+def returnAllTitles():
+        db = connect()
+        titles = []
+        stories = db.find()             
+        for x in stories
+             titles.append(x['title'])
+        return titles
+             
 	
