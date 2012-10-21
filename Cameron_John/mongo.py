@@ -8,10 +8,23 @@ def connect():
 	return db
 	
 def addStory(title):
-        d = {'title':title, 'lines:[]}
+        d = {'title':title, 'lines':[]}
         db = connect()
         collection = db.stories     
         collection.insert(d)
 
-def 
+<<<<<<< HEAD
+def returnAllTitles():
+        db = connect()
+        titles = []
+        stories = db.find()             
+        for x in stories
+             titles.append(x['title'])
+        return titles
+             
+=======
+def addline(title,line):
+	db = connect()
+	db.titles.update({'title':title}, {'$push': {lines: line} });
+>>>>>>> 953f6f854396d64d35f85a34b87132722759b5a6
 	
