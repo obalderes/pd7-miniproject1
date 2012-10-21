@@ -25,7 +25,8 @@ def addLine(x, newLine):
     kurkalva.update({'title' : x}, {'$push' : {'lines' : newLine }})
 
 def removeStory(x):
-    kurkalva.remove({'title' : x})
+    #kurkalva.remove({'title' : x})
+    kurkalva.remove(x)
 
 addStory("This is a new story")
 #print db.collection_names()
