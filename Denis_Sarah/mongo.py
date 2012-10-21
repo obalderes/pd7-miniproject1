@@ -28,8 +28,7 @@ def addLineToStory(title,line):
     """
     db = connect()
     collection = db.stories
-    #not done
-    pass
+    db.stories.findAndModify( {'title': title}, {$push: {"lines": line}});
 
 
 
@@ -42,9 +41,10 @@ def removeStory(title):
 
  
 def returnStory(title):
-    """ Given a title, returns the 
+    """ Given a title, returns the story
     """
     db = connect()
     collection = db.stories
+    return db.stories.find("title": title);
     
 
