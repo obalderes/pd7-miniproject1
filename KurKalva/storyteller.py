@@ -26,6 +26,10 @@ def addLine(x, newLine):
 
 def removeStory(x):
     kurkalva.remove({'title' : x})
+    #kurkalva.remove(x)
+
+def returnStory(x):
+    return kurkalva.find({'title' : x})
 
 addStory("This is a new story")
 #print db.collection_names()
