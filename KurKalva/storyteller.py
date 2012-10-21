@@ -19,3 +19,4 @@ def addStory(x):
 
 addStory("This is a new story")
 print db.collection_names()
+print kurkalva.find_one()
