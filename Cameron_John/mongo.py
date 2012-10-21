@@ -23,4 +23,4 @@ def returnAllTitles():
              
 def addline(title,line):
 	db = connect()
-	db.titles.update({'title':title}, {'$push': {lines: line} });	
+	db.titles.update({'title':title}, {'$push': {lines: line} })
