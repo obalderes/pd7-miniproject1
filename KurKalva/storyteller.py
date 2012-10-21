@@ -19,6 +19,7 @@ res = db.authenticate('ml7', 'ml7')
 db = Connection['z-pd7-KurKalva']
 kurkalva = db.kurkalva
 
+#Adds a story with title 'x' to the database
 def addStory(x):
     if (kurkalva.find_one({'title': x}) != []):
         for line in kurkalva.find({'title' : x}):
@@ -26,6 +27,8 @@ def addStory(x):
     d = {'title': str(x), 'lines': []}
     kurkalva.insert(d)
 
+
+#Adds a new line (newLine) to the story with the title 'x'
 def addLine(x, newLine):
     #res = kurkalva.find_one({'title': x})
     #oldList = res['lines']
@@ -33,13 +36,19 @@ def addLine(x, newLine):
     #kurkalva.update({'title': x}, {'title' : x, 'lines' : newList})
     kurkalva.update({'title' : x}, {'$push' : {'lines' : newLine }})
 
+
+#Removes the story with title 'x' from the database
 def removeStory(x):
     kurkalva.remove({'title' : x})
     #kurkalva.remove(x)
 
+
+#Returns the story with title 'x'
 def returnStory(x):
     return kurkalva.find_one({'title' : x})
 
+
+#Returns all the story titles in the database
 def returnStories():
     titles = []
     results = kurkalva.find()
@@ -47,6 +56,8 @@ def returnStories():
         titles.append(line['title'])
     return titles
 
+
+#Removes all the stories from the database
 def wipeDatabase():
     for line in kurkalva.find():
         removeStory(line['title'])
