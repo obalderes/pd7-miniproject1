@@ -18,6 +18,11 @@ def newLine(title,line):
     storyTitle = collection.find_one({'title':title})
     paragraph = storyTitle['story']
     paragraph.append(line)
-    collection.update({'title':title},{'$set' {'story':paragraph}})
+    collection.update({'title':title},{'$set': {'story':paragraph}})
 def removeStory(title):
     collection.remove({'title':title})
+if __name__ == '__main__':
+    newStory('The YanYan')
+    newLine('The YanYan','HELLO')
+    newLine('The YanYan','BYE')
+    print returnStory('The YanYan')
