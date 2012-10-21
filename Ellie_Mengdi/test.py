@@ -35,5 +35,6 @@ class TestDatabase(unittest.TestCase):
         database.add_comment("new story","comment one")
         comments=database.get_comments("new story")
         self.assertEqual(["comment one","comment one"],comments) 
+
 if __name__=='__main__':
     unittest.main()
