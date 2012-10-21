@@ -40,8 +40,9 @@ class TestSequenceFunctions(unittest.TestCase):
       storyteller.addStory("hello")
       storyteller.addStory("numba3")
       storyteller.wipeDatabase()
-      numTitles = storyteller.returnStories()
-      self.assertEqual(len(numTitles), 0)
+      titles = storyteller.returnStories()
+      numtitles = len(titles)
+      self.assertEqual(numtitles, 0)
 
 if __name__ == '__main__':
    unittest.main()
