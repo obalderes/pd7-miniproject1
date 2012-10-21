@@ -14,6 +14,9 @@ db = Connection['z-pd7-KurKalva']
 kurkalva = db.kurkalva
 
 def addStory(x):
+    if (kurkalva.find_one({'title': x}) != []):
+        for line in kurkalva.find({'title' : x}):
+            removeStory(x)
     d = {'title': str(x), 'lines': []}
     kurkalva.insert(d)
 
@@ -29,12 +32,20 @@ def removeStory(x):
     #kurkalva.remove(x)
 
 def returnStory(x):
-    return kurkalva.find({'title' : x})
+    return kurkalva.find_one({'title' : x})
+
+def returnStories():
+    titles = []
+    results = kurkalva.find()
+    for line in results:
+        titles.append(line['title'])
+    return titles
 
 addStory("This is a new story")
 #print db.collection_names()
 #print kurkalva.find_one()
 #addLine("This is a new story", "and it sounds a little something like this")
-print kurkalva.find_one({'title': "This is a new story"})
+print returnStory("This is a new story")
 addLine("This is a new story", "and it goes a lil somethin like this")
-print kurkalva.find_one({'title' : "This is a new story"})
+print returnStory("This is a new story")
+print returnStories()
