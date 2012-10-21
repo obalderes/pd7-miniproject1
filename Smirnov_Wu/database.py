@@ -11,10 +11,22 @@ def connect():
 def newStory(title):
     db = connect()
     collection = db.stories
-    newStory = {"title":title, "lines":[]}
-    collection.insert(newStory)
+    newstory = {"title":title, "lines":[]}
+    collection.insert(newstory)
 
 def removeAllStories():
     db = connect()
     db.stories.remove()
+
+def newLine(name, newline):
+    story = collection.find_one({"name": name})
+    oldlines = story["lines"]
+    oldlines.append(newline)
+    collection.update({"name": name}, {"$set": {"lines": oldlines}})
+
+print newStory("yarharhar")
+
+
+
+    
     
