@@ -19,3 +19,5 @@ def newLine(title,line):
     paragraph = storyTitle['story']
     paragraph.append(line)
     collection.update({'title':title},{'$set' {'story':paragraph}})
+def removeStory(title):
+    collection.remove({'title':title})
