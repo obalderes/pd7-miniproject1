@@ -45,6 +45,6 @@ def returnStory(title):
     """
     db = connect()
     collection = db.stories
-    return db.stories.find("title": title);
+    return collection.find("title": title);
     
 
