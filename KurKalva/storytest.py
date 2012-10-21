@@ -14,8 +14,9 @@ class TestSequenceFunctions(unittest.TestCase):
    def test_addLine(self):
       storyteller.addStory("test")
       storyteller.addLine("test", "testline")
-      lines = storyteller.returnStory("test")
-      self.assertequal(lines[0], "testline")
+      lines = storyteller.returnStory("test")['lines']
+      hold = lines[0]
+      self.assertEqual(hold, "testline")
 
 if __name__ == '__main__':
    unittest.main()
