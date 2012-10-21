@@ -5,14 +5,35 @@ def smartprint(mongodata):
         del entry['_id']
         print entry
 
-Connection = Connection('mongo.stuycs.org')
-db = Connection.admin
-res = db.authenticate('ml7','ml7')
-db = Connection['z-pd7-zachary']
+def conn():
+    connection = Connection('mongo.stuycs.org')
+    db = connection.admin
+    res = db.authenticate('ml7','ml7')
+    db = connection['z-pd7-ZZ']
+    return db  
 
 #########################################################
 
-db.test.
-db.test.insert({'name':'fred'})
+def addStory(title):
+    db = conn()
+    d = {'title':title, 'lines':[]}
+    db.stories.insert(d)
 
-smartprint(db.test.find())
+def getStoryNames():
+    db = conn()
+    d = db.stories.find()
+    l = [x['title'] for x in d]
+    return l
+
+def addLine(story, line):
+    db = conn()
+    d = [x for x in db.stories.find({'title':story})]
+    if len(d) == 0:
+        return
+    d = d[0]
+    li = d['lines']
+    li.append(line)
+    db.stories.update({'title':story},d)
+
+
+addLine("dd", "argh")
