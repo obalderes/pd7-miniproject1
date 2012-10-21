@@ -7,6 +7,9 @@ class TestSequenceFunctions(unittest.TestCase):
       pass
       #storyteller.setup()
 
+   def tearDown(self):
+      storyteller.wipeDatabase()
+
    def test_addStory(self):
       storyteller.addStory("test")
       self.assertEqual(storyteller.returnStory("test")['title'],"test")
