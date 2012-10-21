@@ -12,3 +12,6 @@ res = db.authenticate('ml7', 'ml7')
 db = Connection['z-pd7-KurKalva']
 
 collection = db.first_collection
+
+def addStory(x):
+    d = {'title': str(x), 'lines': []}
