@@ -7,7 +7,7 @@ db = Connection['z-pd7']
 collection = db.collection1
 
 def newStory(title):
-    if collection.find({'title':title}).count() == 1:
+    if collection.find({'title':title}).count() == 0:
         collection.insert({'title':title,'story':''})
 
 def newLine(title,line):
