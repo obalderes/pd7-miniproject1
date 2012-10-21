@@ -46,5 +46,12 @@ def returnStory(title):
     db = connect()
     collection = db.stories
     return collection.find({"title" : title})
-    
 
+def returnTitles():
+    db = connect()
+    collection = db.stories
+    print "Story Titles: "
+    for c in collection:
+        print find({} , {fields: "title"})
+        print ", "
+        
