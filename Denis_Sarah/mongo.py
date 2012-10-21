@@ -28,7 +28,7 @@ def addLineToStory(title,line):
     """
     db = connect()
     collection = db.stories
-    db.stories.findAndModify( {'title': title}, {$push: {"lines": line}});
+    db.stories.update( {'title': title}, {"$push": {"lines": line}});
 
 
 
@@ -45,6 +45,6 @@ def returnStory(title):
     """
     db = connect()
     collection = db.stories
-    return collection.find("title": title);
+    return collection.find({"title" : title})
     
 
