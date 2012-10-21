@@ -10,6 +10,8 @@ def connect():
 def addStory(title):
         d = {'title':title, 'lines:[]}
         db = connect()
-        db.insert(d)
-             
+        collection = db.stories     
+        collection.insert(d)
+
+def 
 	
