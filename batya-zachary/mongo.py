@@ -36,9 +36,18 @@ def getStoryNames():
     l = [x['title'] for x in d]
     return l
 
+def getStoryIDs():
+    """
+    Returns all the story IDs.
+    """
+    db = conn()
+    d = db.stories.find()
+    l = [x['_id'] for x in d]
+    return l
+
 def addLine(story, line):
     """
-    Adds a line to the story.
+    Adds a line to the story, given the story's title.
     Appends the line to the list of lines.
     If the story doesn't exist the method returns without doing anything.
     """
@@ -51,3 +60,41 @@ def addLine(story, line):
     li.append(line)
     db.stories.update({'title':story},d)
 
+def addLineByID(storyID, line):
+    """
+    Adds a line to the story, given the story's ID
+    Appends the line to the list of lines.
+    If the story doesn't exist the method returns without doing anything.
+    """
+    db = conn()
+    d = [x for x in db.stories.find({'_id':storyID})]
+    if len(d) == 0:
+        return
+    d = d[0]
+    li = d['lines']
+    li.append(line)
+    db.stories.update({'_id':storyID},d)
+
+def storyText(story):
+    """
+    Prints the contents of a story, for debugging purposes.
+    Returns if the story is not found.
+    """
+    db = conn()
+    d = [x for x in db.stories.find({'title':story})]
+    if len(d) == 0:
+        return
+    d = d[0]
+    print d['title']
+    for line in d['lines']:
+        print line
+
+if __name__ == __main__:
+    addStory("FRED")
+    name = getStoryNames()
+    print "NAME: " + name
+    id = getStoryIDs()
+    print "ID: " + id
+    addLine(name,"first line")
+    addLineByID(id,"second line")
+    storyText(name)
