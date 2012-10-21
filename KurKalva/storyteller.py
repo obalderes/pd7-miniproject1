@@ -5,12 +5,9 @@
 from pymongo import Connection
 
 Connection=Connection('mongo.stuycs.org')
-
 db = Connection.admin
 res = db.authenticate('ml7', 'ml7')
-
 db = Connection['z-pd7-KurKalva']
-
 kurkalva = db.kurkalva
 
 def addStory(x):
@@ -41,7 +38,11 @@ def returnStories():
         titles.append(line['title'])
     return titles
 
-addStory("This is a new story")
+def wipeDatabase():
+    for line in kurkalva.find():
+        removeStory(line['title'])
+
+#addStory("This is a new story")
 #print db.collection_names()
 #print kurkalva.find_one()
 #addLine("This is a new story", "and it sounds a little something like this")
@@ -49,11 +50,15 @@ addStory("This is a new story")
 #addLine("This is a new story", "and it goes a lil somethin like this")
 #print returnStory("This is a new story")
 #print returnStories()
-new_posts = [{'title' : "This is a new title"},
-	     {'title' : "This is a title with two lines",
-	      'lines' : ["one line", "two lines"]}
-             {'title' : "Story with only one line",
-	      'lines' : ["lonely line"]}]
-kurkalva.insert(new_posts)
-returnStories()
+
+###~~We did a test by hard coding several new stories to see if they all entered right. They did~###
+###new_posts = [{'title' : "This is a new title", 'lines' : []},
+###	     {'title' : "This is a title with two lines",
+###	      'lines' : ["one line", "two lines"]},
+###            {'title' : "Story with only one line",
+###	      'lines' : ["lonely line"]}]
+###kurkalva.insert(new_posts)
+###print returnStories()
 	     
+
+
