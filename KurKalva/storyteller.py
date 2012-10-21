@@ -4,11 +4,17 @@
 
 from pymongo import Connection
 
-Connection=Connection('mongo.stuycs.org')
-db = Connection.admin
-res = db.authenticate('ml7', 'ml7')
-db = Connection['z-pd7-KurKalva']
-kurkalva = db.kurkalva
+Connection = None
+db = None
+res = None
+kurkalva = None
+
+def setup():
+    Connection=Connection('mongo.stuycs.org')
+    db = Connection.admin
+    res = db.authenticate('ml7', 'ml7')
+    db = Connection['z-pd7-KurKalva']
+    kurkalva = db.kurkalva
 
 def addStory(x):
     if (kurkalva.find_one({'title': x}) != []):
