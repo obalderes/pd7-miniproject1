@@ -1,6 +1,10 @@
 from pymongo import Connection
+from bson.objectid import ObjectId
 
 def smartprint(mongodata):
+    """
+    Prints the database without the IDs.
+    """
     for entry in mongodata:
         del entry['_id']
         print entry
@@ -18,6 +22,14 @@ def conn():
 
 #########################################################
 
+def clearDB():
+    """
+    Removes all entries from the database.
+    """
+    db = conn()
+    db.stories.remove()
+
+
 def addStory(title):
     """
     Adds a new story title.
@@ -33,7 +45,7 @@ def getStoryNames():
     """
     db = conn()
     d = db.stories.find()
-    l = [x['title'] for x in d]
+    l = [str(x['title']) for x in d]
     return l
 
 def getStoryIDs():
@@ -89,12 +101,13 @@ def storyText(story):
     for line in d['lines']:
         print line
 
-if __name__ == __main__:
-    addStory("FRED")
-    name = getStoryNames()
+if __name__ == '__main__':
+    clearDB()
+    addStory("new title")
+    name = getStoryNames()[0]
     print "NAME: " + name
-    id = getStoryIDs()
-    print "ID: " + id
+    id = getStoryIDs()[0]
+    print "ID: " + str(id)
     addLine(name,"first line")
     addLineByID(id,"second line")
     storyText(name)
